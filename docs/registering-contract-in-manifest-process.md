@@ -1,3 +1,7 @@
+# Registrar contrato compartido en el hub central
+
+El manifiesto de la iniciativa declara shared_contracts: [], pero la constitución Frontend exige una revisión inmutable del contrato para planificar su consumo. 
+
 1. Si el Backend confirma que el contrato OpenAPI está en su ruta canónica, corresponde a la implementación y está disponible en un commit. Anotar el SHA completo de ese commit, algo así:
 
     owner_repo: https://github.com/dariopalminio/poc-be-federated-sdd
