@@ -1,4 +1,4 @@
-# Registrar contrato compartido en el hub central
+# Registrar contrato compartido en el hub central (sincronización)
 
 El manifiesto de la iniciativa declara shared_contracts: [], pero la constitución Frontend exige una revisión inmutable del contrato para planificar su consumo. 
 
@@ -14,4 +14,4 @@ El manifiesto de la iniciativa declara shared_contracts: [], pero la constituci�
 
 4. Actualizar los origin.yaml afectados para fijar esa nueva revisión del Hub. El Frontend entonces puede derivar su spec contra el manifiesto actualizado y planificar el consumo del contrato fijado.
 
-Hasta que ese cambio del Hub esté integrado, mantengan bloqueada la planificación Frontend: no cambien su constitución ni sustituyan shared_contracts: [] por una elección local.
+5. Hasta que ese cambio del Hub esté integrado, mantengan bloqueada la planificación Frontend: no cambien su constitución ni sustituyan shared_contracts: [] por una elección local. El fronten debe actualizar su source_revision en el origin.yaml.

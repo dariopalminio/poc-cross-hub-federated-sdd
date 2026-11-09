@@ -1,16 +1,14 @@
 <!--
 Sync Impact Report
-Version change: 1.0.0 -> 1.1.0 (ampliacion de obligaciones de coordinacion)
+Version change: 1.1.0 -> 1.2.0 (reglas de contratos OpenAPI y migracion de rutas)
 Modified principles:
-- III. Derivacion jerarquica trazable: manifiesto padre y origen de las specs hijas.
-- IV. Contratos inmutables con propietario explicito: ruta vigente de la plantilla.
-- V. Verificacion basada en evidencia: comprobacion bidireccional de metadatos.
-Added sections: Mecanismo declarativo padre-hijas, dentro de Flujo y puertas de revision.
-Expanded sections: Flujo y puertas de revision, con resincronizacion y cierre transversal.
+- IV. Contratos inmutables con propietario explicito: copia canonica, planificacion,
+  validacion de implementacion y registro previo al consumo.
+Added sections: ninguna.
+Expanded sections: Flujo y puertas de revision, con secuencia de migracion de rutas canonicas.
 Removed sections: ninguna.
 Deferred items: TODO(RATIFICATION_DATE), confirmar la fecha de adopcion original.
-Follow-up: alinear la plantilla de manifiesto con los campos aqui exigidos antes de
-automatizar su consumo; no se modifica la plantilla ni se implementan comandos en esta enmienda.
+Follow-up: ninguno; esta enmienda no mueve el contrato ni modifica el manifiesto vigente.
 Nota: informe temporal de revision; retirar antes de confirmar la constitucion en Git.
 -->
 # poc-cross-hub-federated-sdd Constitution
@@ -58,11 +56,19 @@ DEBE registrar los contratos compartidos siguiendo la estructura de
 la referencia DEBE permitir resolver la revision
 exacta del artefacto. El propietario DEBE mantener la definicion autoritativa del contrato;
 los consumidores NO DEBEN modificarla ni sustituirla por una copia local independiente.
+Cada contrato compartido DEBE tener exactamente una copia canonica en la ruta declarada
+por el manifiesto del Hub. Las specs y los planes de features DEBEN referenciar esa copia
+y NO DEBEN mantener copias alternativas del contrato.
 Para la API Backend-Frontend, `poc-be-federated-sdd` es el productor y propietario del
 contrato OpenAPI y `poc-fe-federated-sdd` es su consumidor.
 Una revision publicada NO DEBE alterarse: cualquier cambio DEBE producir una nueva revision.
 Los cambios incompatibles DEBEN identificar consumidores afectados y un plan de migracion
 acordado con ellos antes de adoptar la nueva revision.
+El plan tecnico DEBE identificar y verificar el propietario y la ruta canonica del contrato,
+y describir los cambios previstos. La implementacion DEBE actualizar o generar el contrato
+directamente en esa ruta y DEBE validar que coincide con el servicio que define. Antes de que
+otro repositorio consuma una revision, el Hub DEBE registrar en `shared_contracts` el propietario,
+la ruta y la revision inmutable del contrato.
 
 ### V. Verificacion basada en evidencia
 
@@ -132,6 +138,19 @@ interpretarse como una automatizacion ya disponible en Spec Kit.
 	registrar el estado de actualizacion; una hija fijada a una revision anterior NO DEBE
 	presentarse como alineada con la nueva. La evidencia historica NO DEBE sobrescribirse.
 
+- **Migracion de ruta canonica OpenAPI:** una solicitud para mover el contrato DEBE coordinarse
+	primero con el Hub, que DEBE aprobar y declarar la ruta de destino antes del movimiento.
+	Para el contrato de salud de esta iniciativa, `specs/contracts/openapi.json` es la ruta
+	propuesta; NO DEBE usarse ni moverse el archivo a ella hasta que el Hub la declare en el
+	manifiesto.
+	Despues, el propietario Backend DEBE mover o generar el contrato en esa ruta y publicar un
+	commit que contenga la version canonica. El Hub DEBE registrar la ruta nueva y el SHA completo
+	e inmutable de ese commit en `shared_contracts`, y publicar la revision actualizada del Hub.
+	Finalmente, cada hija afectada DEBE fijar esa revision del Hub en `origin.yaml` y comprobar
+	el contrato antes de declarar alineacion. Hasta completar la secuencia, los consumidores NO
+	DEBEN adoptar la ruta nueva ni presentarse como alineados con ella; la copia anterior NO DEBE
+	mantenerse como una segunda fuente autoritativa.
+
 ### Secuencia y comprobaciones de aceptacion
 
 1. Especificar en el Hub la iniciativa y sus criterios de aceptacion; identificar satelites,
@@ -177,4 +196,4 @@ del mantenedor del Hub y de los propietarios afectados antes de aceptar el cambi
 Las excepciones NO DEBEN modificar implicitamente esta constitucion ni autorizar cambios
 retroactivos en revisiones publicadas de contratos.
 
-**Version**: 1.1.0 | **Ratified**: TODO(RATIFICATION_DATE): confirmar fecha de adopcion original | **Last Amended**: 2026-11-09
+**Version**: 1.2.0 | **Ratified**: TODO(RATIFICATION_DATE): confirmar fecha de adopcion original | **Last Amended**: 2026-11-09
