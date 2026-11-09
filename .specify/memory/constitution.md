@@ -19,7 +19,7 @@ Nota: informe temporal de revision; retirar antes de confirmar la constitucion e
 
 ### I. Initiative-First
 
-Toda iniciativa transversal DEBE tener una especificacion de epica de negocio en el Hub
+Toda iniciativa (Epic) transversal DEBE tener una especificacion de epica de negocio en el Hub
 antes de derivar especificaciones locales. Esta DEBE identificar el objetivo de negocio,
 el alcance, los repositorios participantes y los criterios de aceptacion transversales.
 Los cambios de alcance compartido DEBEN actualizar primero esa especificacion y registrar
@@ -107,13 +107,13 @@ interpretarse como una automatizacion ya disponible en Spec Kit.
 	contrato en el repositorio propietario. El Hub DEBE referenciar el contrato canonico,
 	no alojar una copia autoritativa alternativa. Si no hay contratos compartidos,
 	`shared_contracts` DEBE ser una lista vacia explicita.
-- **Origen hijo:** `specs/<spec-local>/origin.yaml` DEBE declarar `initiative_id`,
+- **Origen hijo:** `specs/<spec-local>/origin.yaml` DEBE declarar `epic_id`,
 	`hub_repo`, `spec_source`, `source_revision`, `role` y `requirements`.
 	`spec_source` DEBE apuntar al `spec.md` padre mediante una ruta relativa al repositorio
 	del Hub y `source_revision` DEBE fijar el SHA completo del commit que contiene tanto
 	esa spec como su manifiesto. `requirements` DEBE enumerar los IDs centrales cubiertos.
 	Una fecha de sincronizacion o una rama mutable NO DEBE sustituir al SHA de origen.
-- **Coherencia bidireccional:** al resolver el origen fijado, `initiative_id` DEBE coincidir
+- **Coherencia bidireccional:** al resolver el origen fijado, `epic_id` DEBE coincidir
 	con el `id` del manifiesto. El repositorio de la hija, su ruta y su `role` DEBEN coincidir
 	con `repo`, `local_spec` y `role` de su entrada en `links`. Los IDs de `requirements`
 	DEBEN coincidir con `scope` y existir en la spec padre. La spec hija DEBE conservar esos

@@ -12,7 +12,7 @@ create automation, or replace the child repository's technology-specific guidanc
 - **Repository**: `{{REPOSITORY_NAME}}`
 - **Repository URL**: {{REPOSITORY_URL}}
 - **Federated role**: `{{FEDERATED_ROLE}}`
-- **Initiative**: `{{INITIATIVE_ID}}`
+- **Epic**: `{{epic_id}}`
 - **Local specification**: `{{LOCAL_SPEC_PATH}}`
 - **Parent Hub**: `https://github.com/dariopalminio/poc-cross-hub-federated-sdd`
 - **Parent specification**: `{{PARENT_SPEC_PATH}}`
@@ -25,13 +25,13 @@ create automation, or replace the child repository's technology-specific guidanc
 | Backend producer | `poc-be-federated-sdd` | `https://github.com/dariopalminio/poc-be-federated-sdd` | `backend-producer` | `specs/001-health-endpoint/spec.md` |
 | Frontend consumer | `poc-fe-federated-sdd` | `https://github.com/dariopalminio/poc-fe-federated-sdd` | `frontend-consumer` | `specs/001-health-page/spec.md` |
 
-For another initiative, replace the example initiative and local specification paths with
-the corresponding `links-manifest.yaml` values. Do not copy the table's example initiative
+For another initiative (Epic), replace the example initiative (Epic) and local specification paths with
+the corresponding `links-manifest.yaml` values. Do not copy the table's example initiative (Epic)
 paths into another feature without confirming its manifest entry.
 
 ## Project Purpose and Boundaries
 
-This repository implements its assigned contribution to a cross-repository initiative.
+This repository implements its assigned contribution to a cross-repository initiative (Epic).
 The Hub owns the parent business specification and coordinates scope. This child owns its
 local specification, technical plan, tasks, implementation, and local verification.
 
@@ -43,7 +43,7 @@ local specification, technical plan, tasks, implementation, and local verificati
 
 ## Parent-to-Child Specification Contract
 
-The parent initiative is the source of truth for cross-repository requirements. Before
+The parent initiative (Epic) is the source of truth for cross-repository requirements. Before
 editing or deriving the local specification, resolve `{{PARENT_SPEC_PATH}}` and
 `{{PARENT_MANIFEST_PATH}}` at the same immutable Hub commit.
 
@@ -58,7 +58,7 @@ The child MUST keep `origin.yaml` beside its local `spec.md`. It MUST contain th
 fields, consistent with the Hub constitution:
 
 ```yaml
-initiative_id: "{{INITIATIVE_ID}}"
+epic_id: "{{EPIC_id}}"
 hub_repo: https://github.com/dariopalminio/poc-cross-hub-federated-sdd
 spec_source: "{{PARENT_SPEC_PATH}}"
 source_revision: "{{FULL_HUB_COMMIT_SHA}}"
@@ -74,7 +74,7 @@ a substitute for that SHA.
 
 Before proceeding, verify all of the following against that exact parent revision:
 
-1. `initiative_id` matches the manifest `id`.
+1. `epic_id` matches the manifest `id`.
 2. `hub_repo`, `spec_source`, `role`, and this repository's URL and local spec path resolve
    to the matching manifest entry.
 3. `requirements` matches that entry's `scope`; every listed ID exists in the parent spec.
@@ -94,14 +94,14 @@ contract consumed by the Frontend.
 
 - **Backend producer**: define and maintain the canonical contract in the Backend repository.
   Record its owner repository, path, and full commit SHA in the Hub manifest when the
-  contract is included in the initiative. Publish changes as a new immutable revision;
+  contract is included in the initiative (Epic). Publish changes as a new immutable revision;
   coordinate breaking changes with consumers and document a migration plan.
 - **Frontend consumer**: consume the exact contract revision declared by the Hub. Do not
   edit or publish an independent authoritative copy. Raise required interface changes to
   the Backend owner and update this child's origin only when adopting an agreed parent
   revision.
 
-For initiatives without a shared contract, the parent manifest MUST use an explicit empty
+For initiatives (Epics) without a shared contract, the parent manifest MUST use an explicit empty
 `shared_contracts: []`. Do not claim contract alignment before an immutable revision exists.
 
 ## Local Spec Kit Workflow
