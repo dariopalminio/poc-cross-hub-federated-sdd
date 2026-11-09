@@ -1,16 +1,3 @@
-<!--
-Sync Impact Report
-Version change: 1.1.0 -> 1.2.0 (reglas de contratos OpenAPI y migracion de rutas)
-Modified principles:
-- IV. Contratos inmutables con propietario explicito: copia canonica, planificacion,
-  validacion de implementacion y registro previo al consumo.
-Added sections: ninguna.
-Expanded sections: Flujo y puertas de revision, con secuencia de migracion de rutas canonicas.
-Removed sections: ninguna.
-Deferred items: TODO(RATIFICATION_DATE), confirmar la fecha de adopcion original.
-Follow-up: ninguno; esta enmienda no mueve el contrato ni modifica el manifiesto vigente.
-Nota: informe temporal de revision; retirar antes de confirmar la constitucion en Git.
--->
 # poc-cross-hub-federated-sdd Constitution
 
 ## Core Principles
