@@ -4,8 +4,8 @@ title: Consulta y visualización del estado del servicio
 shared_contracts:
   - id: health-api
     owner_repo: https://github.com/dariopalminio/poc-be-federated-sdd
-    path: specs/001-health-endpoint/contracts/openapi.json
-    revision: 44ff3c4576062262370b4f7798b24e1eddc2abde
+    path: specs/contracts/openapi.json
+    revision: 535a33201c0b937a41cc8dba5b40d639d448c5ed
 links:
   - role: backend-health
     repo: https://github.com/dariopalminio/poc-be-federated-sdd
