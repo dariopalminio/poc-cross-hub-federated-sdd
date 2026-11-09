@@ -1,0 +1,19 @@
+schema: spec-driven/links-manifest-template-v1
+id: 001-health-status
+title: Consulta y visualización del estado del servicio
+shared_contracts: []
+links:
+  - role: backend-health
+    repo: https://github.com/dariopalminio/poc-be-federated-sdd
+    local_spec: specs/001-health-endpoint/spec.md
+    scope:
+      - FR-001
+      - FR-002
+      - FR-003
+      - FR-006
+  - role: frontend-health
+    repo: https://github.com/dariopalminio/poc-fe-federated-sdd
+    local_spec: specs/001-health-page/spec.md
+    scope:
+      - FR-004
+      - FR-005
