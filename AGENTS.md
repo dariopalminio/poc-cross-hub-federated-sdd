@@ -15,7 +15,7 @@ Se desacopla formalmente el Plano de Coordinación Estratégico del Plano de Eje
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                   HUB CENTRAL DE INICIATIVAS                           │
+│                   HUB CENTRAL DE INICIATIVAS (este repositorio)        │
 │   (poc-cross-hub-federated-sdd: specs transversales, contratos y orquestación)   │
 └───────────────────────────────────┬────────────────────────────────────┘
                                     │ Derivación Declarativa (Punteros)
@@ -44,4 +44,6 @@ Backend: https://github.com/dariopalminio/poc-be-federated-sdd
 ## Documentación
 
 - Documenta la configuración y la arquitectura acordadas en el README o en documentación específica y añade aquí un enlace en lugar de duplicar el contenido.
+- Para inicializar las instrucciones de agentes de un repositorio satélite, usa la plantilla [docs/template/AGENTS-template.md](docs/template/AGENTS-template.md) y sustituye los valores de identidad y rol.
 - Actualiza estas instrucciones cuando se establezcan las herramientas y las convenciones; sustituye las indicaciones propias del estado inicial del proyecto por comandos y referencias verificados.
+- Escribe la documentación en español.

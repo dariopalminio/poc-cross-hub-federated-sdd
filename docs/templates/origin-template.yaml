@@ -1,0 +1,13 @@
+# Copy beside the child spec as origin.yaml and replace every placeholder.
+# Values must match the linked entry in the parent links-manifest.yaml.
+initiative_id: "<INITIATIVE_ID>"
+hub_repo: https://github.com/dariopalminio/poc-cross-hub-federated-sdd
+# Repository-relative path to the parent spec at source_revision.
+spec_source: "specs/<initiative>/spec.md"
+# Full 40-character commit SHA containing both the parent spec and its manifest.
+source_revision: "<FULL_40_CHARACTER_HUB_COMMIT_SHA>"
+# Must match the child role in the parent manifest.
+role: "<ROLE_FROM_PARENT_MANIFEST>"
+# List every parent requirement ID assigned to this child (manifest scope).
+requirements:
+  - "<PARENT_REQUIREMENT_ID>"
