@@ -142,11 +142,18 @@ que afirma que la referencia contractual está pendiente.
 
 ## Qué se validó
 
+- Se validó la viabilidad de trabajar con Contract Driven Development (CDD): el contrato
+	compartido tiene un propietario Backend, una ruta canónica y una revisión inmutable que el
+	Hub registra para el consumo del Frontend.
+- Se validó el uso de Spec Kit en un flujo polyrepo con una spec de iniciativa (Epic) en el
+	Hub y specs hijas por repositorio satélite, enlazadas mediante el manifiesto y `origin.yaml`.
 - Se comprobó que el manifiesto declara los roles `backend-health` y `frontend-health`, sus
 	rutas locales y sus alcances de requisitos.
 - Se comprobó que `shared_contracts` contiene el propietario Backend, la ruta YAML canónica y
 	una revisión SHA completa.
 - Se comprobó que la ruta del contrato no existe dentro del Hub; aquí se registra la referencia,
 	no una copia del contrato.
-- No se ejecutaron pruebas, compilaciones ni validaciones de integración Backend-Frontend desde
-	este repositorio. El Hub no declara esos comandos en manifiestos ni en CI.
+- Estas validaciones confirman el flujo de trabajo y la coordinación documental; no demuestran
+	por sí solas la integración funcional del endpoint con la página React.
+- No se ejecutaron pruebas ni compilaciones Backend-Frontend desde este Hub. No se declaran
+	comandos de ese tipo en los manifiestos o en la configuración CI disponible aquí.
