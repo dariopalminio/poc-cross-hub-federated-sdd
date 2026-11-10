@@ -7,8 +7,8 @@ Autores: Equipo del Hub
 
 El contrato `health-api` es propiedad del Backend. El manifiesto de la iniciativa
 [`001-health-status`](../../specs/001-health-status/links-manifest.yaml) actualmente fija
-la ruta `specs/001-health-endpoint/contracts/openapi.json` y la revisión Backend
-`44ff3c4576062262370b4f7798b24e1eddc2abde`.
+la ruta `specs/contracts/openapi.json` y la revisión Backend
+`535a33201c0b937a41cc8dba5b40d639d448c5ed`.
 
 En la ubicación actual, el contrato vive dentro del directorio de una feature
 (`specs/001-health-endpoint/contracts/openapi.json`). Organizar contratos de vida larga junto
@@ -23,10 +23,11 @@ sin mantener copias autoritativas alternativas.
 
 ## Decisión
 
-Se propone que la única copia canónica del contrato `health-api` resida en el repositorio
-Backend en `specs/contracts/openapi.json`. Esta ubicación y el mecanismo descrito quedan
-sujetos a la aceptación del ADR por el Hub; hasta entonces, la ruta y revisión vigentes del
-manifiesto continúan siendo la referencia acordada.
+La única copia canónica del contrato `health-api` residirá en el repositorio Backend en
+`specs/contracts/openapi.yaml`. Los contratos OpenAPI canónicos deben serializarse en YAML
+y usar la extensión `.yaml`. El manifiesto todavía fija `specs/contracts/openapi.json`;
+esa referencia continúa siendo la revisión resoluble hasta que exista un commit Backend que
+contenga el contrato YAML en la ruta aprobada y el Hub publique la referencia correspondiente.
 
 La sincronización federada se representará mediante los siguientes artefactos:
 
@@ -50,7 +51,7 @@ La sincronización federada se representará mediante los siguientes artefactos:
   El contrato consumido debe coincidir con `owner_repo`, `path` y `revision` de
   `shared_contracts` en esa revisión del Hub.
 
-Se propone desarrollo orientado por contratos (CDD): la spec padre acuerda primero las
+El desarrollo se orientará por contratos (CDD): la spec padre acuerda primero las
 necesidades de la interfaz. Antes de implementar, el plan Backend identifica al propietario,
 la ruta canónica y los cambios previstos al contrato. El Backend define una propuesta de
 contrato y la revisa con el consumidor; una vez acordada, publica una revisión inmutable que
@@ -81,6 +82,5 @@ el contrato, el manifiesto o los `origin.yaml`.
   sus propios alcances mediante sus respectivos `origin.yaml`.
 - Los planes y las specs referencian el contrato en vez de copiar su definición, y la validación
   comprueba la implementación del proveedor frente a la interfaz publicada.
-- La ruta actualmente registrada sigue en vigor mientras este ADR permanezca como Propuesta;
-  aceptar este modelo requerirá que las referencias federadas reflejen de forma coherente la
-  ubicación canónica aprobada.
+- La ruta actualmente registrada sigue siendo la referencia resoluble hasta que el Hub fije
+  una revisión Backend que contenga el contrato YAML en `specs/contracts/openapi.yaml`.

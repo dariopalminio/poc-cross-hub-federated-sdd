@@ -1,3 +1,14 @@
+<!--
+Sync Impact Report
+Version change: 1.2.0 -> 1.3.0 (formato YAML obligatorio para contratos OpenAPI)
+Modified principles:
+- IV. Contratos inmutables con propietario explicito: formato y extension de contratos OpenAPI.
+Expanded sections:
+- Flujo y puertas de revision: destino canonico actualizado a openapi.yaml.
+Removed sections: ninguna.
+Deferred items: actualizar el manifiesto cuando el Backend publique la revision YAML canonica.
+Nota: informe temporal de revision; retirar antes de confirmar la constitucion en Git.
+-->
 # poc-cross-hub-federated-sdd Constitution
 
 ## Core Principles
@@ -48,6 +59,10 @@ por el manifiesto del Hub. Las specs y los planes de features DEBEN referenciar 
 y NO DEBEN mantener copias alternativas del contrato.
 Para la API Backend-Frontend, `poc-be-federated-sdd` es el productor y propietario del
 contrato OpenAPI y `poc-fe-federated-sdd` es su consumidor.
+Las nuevas revisiones canonicas de contratos OpenAPI DEBEN serializarse en YAML y usar la
+extension `.yaml`. La revision JSON actualmente fijada puede permanecer como referencia
+inmutable temporal hasta que el Backend publique la revision YAML canonica y el Hub actualice
+`shared_contracts`; no DEBEN publicarse nuevas revisiones canonicas OpenAPI en JSON.
 Una revision publicada NO DEBE alterarse: cualquier cambio DEBE producir una nueva revision.
 Los cambios incompatibles DEBEN identificar consumidores afectados y un plan de migracion
 acordado con ellos antes de adoptar la nueva revision.
@@ -127,9 +142,9 @@ interpretarse como una automatizacion ya disponible en Spec Kit.
 
 - **Migracion de ruta canonica OpenAPI:** una solicitud para mover el contrato DEBE coordinarse
 	primero con el Hub, que DEBE aprobar y declarar la ruta de destino antes del movimiento.
-	Para el contrato de salud de esta iniciativa, `specs/contracts/openapi.json` es la ruta
-	propuesta; NO DEBE usarse ni moverse el archivo a ella hasta que el Hub la declare en el
-	manifiesto.
+	Para el contrato de salud de esta iniciativa, `specs/contracts/openapi.yaml` es la ruta
+	canonica aprobada por el ADR 0001; el contrato DEBE serializarse en YAML. NO DEBE usarse ni
+	moverse el archivo a esa ruta hasta que el Hub la declare en el manifiesto.
 	Despues, el propietario Backend DEBE mover o generar el contrato en esa ruta y publicar un
 	commit que contenga la version canonica. El Hub DEBE registrar la ruta nueva y el SHA completo
 	e inmutable de ese commit en `shared_contracts`, y publicar la revision actualizada del Hub.
@@ -183,4 +198,4 @@ del mantenedor del Hub y de los propietarios afectados antes de aceptar el cambi
 Las excepciones NO DEBEN modificar implicitamente esta constitucion ni autorizar cambios
 retroactivos en revisiones publicadas de contratos.
 
-**Version**: 1.2.0 | **Ratified**: TODO(RATIFICATION_DATE): confirmar fecha de adopcion original | **Last Amended**: 2026-11-09
+**Version**: 1.3.0 | **Ratified**: TODO(RATIFICATION_DATE): confirmar fecha de adopcion original | **Last Amended**: 2026-11-09
