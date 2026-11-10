@@ -1,4 +1,4 @@
-# PoC: itiative-First SDD con Spec Kit Federado
+# PoC: Initiative-First SDD con Spec Kit Federado (+ CDD)
 
 ## Resumen ejecutivo
 
