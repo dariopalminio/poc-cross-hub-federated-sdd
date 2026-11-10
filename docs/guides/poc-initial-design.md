@@ -1,4 +1,4 @@
-# PoC: Initiative-First SDD con Spec Kit federado
+# PoC: Diseño inicial de PoC para implementar Initiative-First SDD con Spec Kit federado
 
 ## Estado y objetivo
 
