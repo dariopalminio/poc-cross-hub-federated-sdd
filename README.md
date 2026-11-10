@@ -98,6 +98,16 @@ poc-fe-federated-sdd/
 └── src/
 ```
 
+### Mecanismo de trazabilidad y coordinación
+
+Los archivos de trazabilidad y coordinación entre spec padre y specs hijas son:
+
+**parent-spec-manifest.yaml** vive junto a la spec padre del Hub (spec de iniciativa o épica). Declara cómo se reparte la spec padre: para cada satélite (spec hija) indica su repositorio, rol, ruta de spec local y requisitos asignados (scope). También puede registrar contratos compartidos con su propietario, ruta y revisión inmutable.
+
+**spec-origin.yaml** vive junto a la spec de cada satélite (spec hija). Registra de dónde viene esa spec (spec padre): identifica la iniciativa/épica y el Hub, fija la ruta y revisión de la spec padre, y declara el rol y los requisitos que cubre esa contribución.
+
+En conjunto permiten comprobar que cada spec hija corresponde a la iniciativa correcta y cubre exactamente el alcance asignado; por sí solos no hacen la derivación automáticamente. 
+
 
 ### Decisiones
 
