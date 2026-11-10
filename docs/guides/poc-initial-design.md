@@ -161,7 +161,7 @@ requirements:
 Una fecha de sincronización puede aportar información adicional, pero no sustituye al SHA
 de origen. El formato `spec-origin.yaml` propuesto no es una capacidad estándar confirmada de Spec Kit.
 
-## 4. Derivación de la iniciativa al satélite
+## 4. Derivación de la iniciativa/épica (spec padre) al satélite (spec hija)
 
 La derivación debe conservar los requisitos aplicables y sus identificadores, sin resumir
 de forma que se pierdan criterios de aceptación o dependencias compartidas.
@@ -193,14 +193,14 @@ los comandos disponibles en su propia instalación de Spec Kit.
 ```mermaid
 sequenceDiagram
     autonumber
-    participant Dev as Desarrollador
+    participant Dev as Desarrollador/PO
     participant Hub as Hub de coordinación
     participant Agent as Agente en el satélite
     participant Sat as Repositorio satélite
 
-    Dev->>Hub: Especificar y revisar la iniciativa
+    Dev->>Hub: Especificar y revisar la iniciativa /speckit-specify
     Hub-->>Agent: Spec, manifiesto y revisión inmutable
-    Dev->>Agent: Derivar el alcance local y revisar trazabilidad
+    Dev->>Agent: Derivar el alcance local y revisar trazabilidad /speckit-specify
     Agent->>Sat: Registrar spec local y procedencia
     Dev->>Agent: /speckit-clarify
     Agent->>Sat: Resolver ambigüedades locales
@@ -215,6 +215,7 @@ sequenceDiagram
 
 | Comando | Responsabilidad en el satélite |
 | --- | --- |
+| `/speckit-specify` | Especificar el desglose (derivar) desde la spec padre 
 | `/speckit-clarify` | Resolver ambigüedades locales; elevar al Hub los cambios de alcance transversal. |
 | `/speckit-plan` | Definir el diseño técnico según la constitución local y el contrato fijado. |
 | `/speckit-tasks` | Desglosar el plan en tareas ordenadas por dependencias y pruebas aplicables. |
