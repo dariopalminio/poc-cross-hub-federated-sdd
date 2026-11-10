@@ -1,6 +1,6 @@
 # parent-spec-manifest-template.yaml (Estado Inicial - Generado en la Fase de Especificación)
 schema: spec-driven/links-manifest-template-v1
-id: [EPIC_ID]
+id: "<PARENT_SPEC_ID>"
 title: [Título de la spec de épica, objetivo de negocio o release meta]
 shared_contracts:
   - id: [ID de contrato]

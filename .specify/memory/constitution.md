@@ -128,13 +128,13 @@ interpretarse como una automatizacion ya disponible en Spec Kit.
 	contrato en el repositorio propietario. El Hub DEBE referenciar el contrato canonico,
 	no alojar una copia autoritativa alternativa. Si no hay contratos compartidos,
 	`shared_contracts` DEBE ser una lista vacia explicita.
-- **Origen hijo:** `specs/<spec-local>/spec-origin.yaml` DEBE declarar `epic_id`,
+- **Origen hijo:** `specs/<spec-local>/spec-origin.yaml` DEBE declarar `parent_spec_id`,
 	`hub_repo`, `spec_source`, `source_revision`, `role` y `requirements`.
 	`spec_source` DEBE apuntar al `spec.md` padre mediante una ruta relativa al repositorio
 	del Hub y `source_revision` DEBE fijar el SHA completo del commit que contiene tanto
 	esa spec como su manifiesto. `requirements` DEBE enumerar los IDs centrales cubiertos.
 	Una fecha de sincronizacion o una rama mutable NO DEBE sustituir al SHA de origen.
-- **Coherencia bidireccional:** al resolver el origen fijado, `epic_id` DEBE coincidir
+- **Coherencia bidireccional:** al resolver el origen fijado, `parent_spec_id` DEBE coincidir
 	con el `id` del manifiesto. El repositorio de la hija, su ruta y su `role` DEBEN coincidir
 	con `repo`, `local_spec` y `role` de su entrada en `links`. Los IDs de `requirements`
 	DEBEN coincidir con `scope` y existir en la spec padre. La spec hija DEBE conservar esos

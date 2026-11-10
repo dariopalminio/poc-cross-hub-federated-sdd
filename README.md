@@ -140,7 +140,7 @@ Esta regla se inspira en [OpenSpec: propietario explícito de contratos comparti
 - La spec padre define el objetivo y los requisitos transversales.
 - `parent-spec-manifest.yaml` registra las specs hijas por `repo`, `role`, `local_spec` y `scope`,
 	y los contratos compartidos por `id`, `owner_repo`, `path` y `revision`.
-- Cada hija mantiene `spec-origin.yaml` junto a `spec.md`, con `epic_id`, `hub_repo`, `spec_source`,
+- Cada hija mantiene `spec-origin.yaml` junto a `spec.md`, con `parent_spec_id`, `hub_repo`, `spec_source`,
 	`source_revision`, `role` y `requirements`. La revisión de origen identifica el commit del
 	Hub que contiene la spec y el manifiesto.
 - El Backend es el propietario del contrato OpenAPI; el Frontend consume la revisión fijada

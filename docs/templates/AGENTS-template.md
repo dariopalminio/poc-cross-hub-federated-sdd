@@ -12,7 +12,7 @@ create automation, or replace the child repository's technology-specific guidanc
 - **Repository**: `{{REPOSITORY_NAME}}`
 - **Repository URL**: {{REPOSITORY_URL}}
 - **Federated role**: `{{FEDERATED_ROLE}}`
-- **Epic**: `{{epic_id}}`
+- **Parent spec ID**: `{{parent_spec_id}}`
 - **Local specification**: `{{LOCAL_SPEC_PATH}}`
 - **Parent Hub**: `https://github.com/dariopalminio/poc-cross-hub-federated-sdd`
 - **Parent specification**: `{{PARENT_SPEC_PATH}}`
@@ -58,7 +58,7 @@ The child MUST keep `spec-origin.yaml` beside its local `spec.md`. It MUST conta
 fields, consistent with the Hub constitution:
 
 ```yaml
-epic_id: "{{EPIC_id}}"
+parent_spec_id: "{{PARENT_SPEC_ID}}"
 hub_repo: https://github.com/dariopalminio/poc-cross-hub-federated-sdd
 spec_source: "{{PARENT_SPEC_PATH}}"
 source_revision: "{{FULL_HUB_COMMIT_SHA}}"
@@ -74,7 +74,7 @@ a substitute for that SHA.
 
 Before proceeding, verify all of the following against that exact parent revision:
 
-1. `epic_id` matches the manifest `id`.
+1. `parent_spec_id` matches the manifest `id`.
 2. `hub_repo`, `spec_source`, `role`, and this repository's URL and local spec path resolve
    to the matching manifest entry.
 3. `requirements` matches that entry's `scope`; every listed ID exists in the parent spec.

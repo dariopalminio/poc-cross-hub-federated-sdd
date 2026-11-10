@@ -43,7 +43,7 @@ La sincronización federada se representará mediante los siguientes artefactos:
   `role`, `repo`, `local_spec` y `scope` al proveedor y al consumidor.
 - **Backend proveedor:** mantiene la copia canónica en la ruta declarada, desarrolla la
   implementación contra el contrato y verifica que el servicio cumple la interfaz publicada.
-  Su `spec-origin.yaml` fija `epic_id`, `hub_repo`, `spec_source`, `source_revision`, el rol Backend
+  Su `spec-origin.yaml` fija `parent_spec_id`, `hub_repo`, `spec_source`, `source_revision`, el rol Backend
   y los requisitos que le corresponden.
 - **Frontend consumidor:** referencia el contrato fijado por el manifiesto, sin copiarlo
   como definición autoritativa. Su `spec-origin.yaml` fija los mismos campos de procedencia,

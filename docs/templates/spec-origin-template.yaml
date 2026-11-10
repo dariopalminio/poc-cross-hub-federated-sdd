@@ -1,9 +1,9 @@
 # Copy beside the child spec as spec-origin.yaml and replace every placeholder.
 # Values must match the linked entry in the parent parent-spec-manifest.yaml.
-epic_id: "<EPIC_ID>"
+parent_spec_id: "<PARENT_SPEC_ID>"
 hub_repo: https://github.com/dariopalminio/poc-cross-hub-federated-sdd
 # Repository-relative path to the parent spec at source_revision.
-spec_source: "specs/<epic>/spec.md"
+spec_source: "specs/<parent-spec>/spec.md"
 # Full 40-character commit SHA containing both the parent spec and its manifest.
 source_revision: "<FULL_40_CHARACTER_HUB_COMMIT_SHA>"
 # Must match the child role in the parent manifest.

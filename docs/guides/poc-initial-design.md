@@ -148,7 +148,7 @@ El Frontend referencia el contrato del Backend; no mantiene una definición auto
 Ejemplo propuesto de metadatos de origen para el Backend:
 
 ```yaml
-epic_id: 001-health-status
+parent_spec_id: 001-health-status
 hub_repo: https://github.com/dariopalminio/poc-cross-hub-federated-sdd
 spec_source: specs/001-health-status/spec.md
 source_revision: "<SHA_COMPLETO_DEL_COMMIT_DE_LA_INICIATIVA>"
