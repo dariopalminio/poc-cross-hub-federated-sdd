@@ -1,12 +1,12 @@
-# poc-cross-hub-federated-sdd
+# PoC: itiative-First SDD con Spec Kit Federado
 
 ## Resumen ejecutivo
 
 Este repositorio es el Hub de coordinación del modelo federado Initiative-First con GitHub
-Spec Kit. Contiene las iniciativas transversales y sus manifiestos de enlace; la ejecución
+Spec Kit. Contiene las iniciativas (épicas) transversales y sus manifiestos de enlace; la ejecución
 técnica, el código y los planes locales viven en los repositorios satélite.
 
-La iniciativa de ejemplo `001-health-status` coordina el endpoint `GET /health`, su contrato
+La iniciativa (épica) de ejemplo `001-health-status` coordina el endpoint `GET /health`, su contrato
 OpenAPI y la página React que consume el estado:
 
 - Backend proveedor: [poc-be-federated-sdd](https://github.com/dariopalminio/poc-be-federated-sdd).
