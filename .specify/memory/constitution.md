@@ -1,12 +1,13 @@
 <!--
 Sync Impact Report
-Version change: 1.2.0 -> 1.3.0 (formato YAML obligatorio para contratos OpenAPI)
+Version change: 1.3.0 -> 1.4.0 (estructura de directorios para contratos OpenAPI y AsyncAPI)
 Modified principles:
-- IV. Contratos inmutables con propietario explicito: formato y extension de contratos OpenAPI.
+- IV. Contratos inmutables con propietario explicito: formato, extension y ubicacion de OpenAPI.
 Expanded sections:
-- Flujo y puertas de revision: destino canonico actualizado a openapi.yaml.
+- Flujo y puertas de revision: ruta canonica con nombre de contrato y espacio AsyncAPI futuro.
 Removed sections: ninguna.
-Deferred items: actualizar el manifiesto cuando el Backend publique la revision YAML canonica.
+Deferred items: actualizar el manifiesto cuando el Backend publique la revision YAML canonica
+en `specs/contracts/openapi/health-api.yaml`.
 Nota: informe temporal de revision; retirar antes de confirmar la constitucion en Git.
 -->
 # poc-cross-hub-federated-sdd Constitution
@@ -60,9 +61,13 @@ y NO DEBEN mantener copias alternativas del contrato.
 Para la API Backend-Frontend, `poc-be-federated-sdd` es el productor y propietario del
 contrato OpenAPI y `poc-fe-federated-sdd` es su consumidor.
 Las nuevas revisiones canonicas de contratos OpenAPI DEBEN serializarse en YAML y usar la
-extension `.yaml`. La revision JSON actualmente fijada puede permanecer como referencia
-inmutable temporal hasta que el Backend publique la revision YAML canonica y el Hub actualice
-`shared_contracts`; no DEBEN publicarse nuevas revisiones canonicas OpenAPI en JSON.
+extension `.yaml`. Cada contrato OpenAPI DEBE ubicarse en
+`specs/contracts/openapi/<contract-name>.yaml`; para salud, la ruta aprobada es
+`specs/contracts/openapi/health-api.yaml`. La revision JSON actualmente fijada puede
+permanecer como referencia inmutable temporal hasta que el Backend publique la revision YAML
+canonica y el Hub actualice `shared_contracts`; no DEBEN publicarse nuevas revisiones
+canonicas OpenAPI en JSON. `specs/contracts/asyncapi/` queda reservado para posibles contratos
+AsyncAPI futuros; esta reserva no declara que ya exista un contrato AsyncAPI.
 Una revision publicada NO DEBE alterarse: cualquier cambio DEBE producir una nueva revision.
 Los cambios incompatibles DEBEN identificar consumidores afectados y un plan de migracion
 acordado con ellos antes de adoptar la nueva revision.
@@ -142,9 +147,9 @@ interpretarse como una automatizacion ya disponible en Spec Kit.
 
 - **Migracion de ruta canonica OpenAPI:** una solicitud para mover el contrato DEBE coordinarse
 	primero con el Hub, que DEBE aprobar y declarar la ruta de destino antes del movimiento.
-	Para el contrato de salud de esta iniciativa, `specs/contracts/openapi.yaml` es la ruta
-	canonica aprobada por el ADR 0001; el contrato DEBE serializarse en YAML. NO DEBE usarse ni
-	moverse el archivo a esa ruta hasta que el Hub la declare en el manifiesto.
+	Para el contrato de salud de esta iniciativa, `specs/contracts/openapi/health-api.yaml` es
+	la ruta canonica aprobada por el ADR 0001; el contrato DEBE serializarse en YAML. NO DEBE
+	usarse ni moverse el archivo a esa ruta hasta que el Hub la declare en el manifiesto.
 	Despues, el propietario Backend DEBE mover o generar el contrato en esa ruta y publicar un
 	commit que contenga la version canonica. El Hub DEBE registrar la ruta nueva y el SHA completo
 	e inmutable de ese commit en `shared_contracts`, y publicar la revision actualizada del Hub.
@@ -198,4 +203,4 @@ del mantenedor del Hub y de los propietarios afectados antes de aceptar el cambi
 Las excepciones NO DEBEN modificar implicitamente esta constitucion ni autorizar cambios
 retroactivos en revisiones publicadas de contratos.
 
-**Version**: 1.3.0 | **Ratified**: TODO(RATIFICATION_DATE): confirmar fecha de adopcion original | **Last Amended**: 2026-11-09
+**Version**: 1.4.0 | **Ratified**: TODO(RATIFICATION_DATE): confirmar fecha de adopcion original | **Last Amended**: 2026-11-09

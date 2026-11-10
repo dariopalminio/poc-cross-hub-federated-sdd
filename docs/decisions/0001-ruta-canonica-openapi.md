@@ -24,10 +24,12 @@ sin mantener copias autoritativas alternativas.
 ## Decisión
 
 La única copia canónica del contrato `health-api` residirá en el repositorio Backend en
-`specs/contracts/openapi.yaml`. Los contratos OpenAPI canónicos deben serializarse en YAML
-y usar la extensión `.yaml`. El manifiesto todavía fija `specs/contracts/openapi.json`;
-esa referencia continúa siendo la revisión resoluble hasta que exista un commit Backend que
-contenga el contrato YAML en la ruta aprobada y el Hub publique la referencia correspondiente.
+`specs/contracts/openapi/health-api.yaml`. Cada contrato OpenAPI canónico debe serializarse
+en YAML y guardarse como `specs/contracts/openapi/<contract-name>.yaml`. El manifiesto todavía
+fija `specs/contracts/openapi.json`; esa referencia continúa siendo la revisión resoluble
+hasta que exista un commit Backend que contenga el contrato YAML en la ruta aprobada y el Hub
+publique la referencia correspondiente. La estructura permite reservar `specs/contracts/asyncapi/`
+para futuros contratos AsyncAPI; esta decisión no presupone que ya exista alguno.
 
 La sincronización federada se representará mediante los siguientes artefactos:
 
@@ -83,4 +85,5 @@ el contrato, el manifiesto o los `origin.yaml`.
 - Los planes y las specs referencian el contrato en vez de copiar su definición, y la validación
   comprueba la implementación del proveedor frente a la interfaz publicada.
 - La ruta actualmente registrada sigue siendo la referencia resoluble hasta que el Hub fije
-  una revisión Backend que contenga el contrato YAML en `specs/contracts/openapi.yaml`.
+  una revisión Backend que contenga el contrato YAML en
+  `specs/contracts/openapi/health-api.yaml`.
