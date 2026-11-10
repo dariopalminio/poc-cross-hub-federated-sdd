@@ -29,7 +29,7 @@ en el Hub, un `links-manifest.yaml` con alcances por rol y un `origin.yaml` por 
 permiten mantener una fuente de verdad transversal y derivar trabajo local conservando los
 IDs de requisitos y fijando revisiones inmutables de la spec y de los contratos.
 
-### Decisión: Planificación basada en la iniciativa con cambios locales en el repositorio vinculados
+### Decisión: Planificación basada en la iniciativa/épica con cambios locales en el repositorio vinculados
 
 En iniciativas que abarcan varios equipos y repositorios, el repositorio no es por sí solo la
 unidad principal de planificación: Backend y Frontend son contribuciones distintas al mismo
@@ -41,9 +41,67 @@ fragmentar el objetivo ni perder la trazabilidad transversal.
 Esta decisión se inspira en la propuesta de OpenSpec sobre planificación por iniciativa con
 cambios locales vinculados: [Workspace architecture: initiative-first planning](https://github.com/Fission-AI/OpenSpec/blob/main/openspec/explorations/workspace-architecture.md#decision-initiative-first-planning-with-linked-repo-local-changes).
 
+El Hub de producto (`bx-spec-cosmos`) es dueño de la especificación funcional global y
+fuente de verdad a nivel de producto; también audita que las contribuciones derivadas sigan
+alineadas. Los repositorios satélite reciben solo los requisitos y el contexto necesarios
+para su alcance, implementan sus responsabilidades locales y no tienen permisos para
+escribir o alterar la especificación global. Esta autoridad funcional no cambia la propiedad
+de los contratos técnicos compartidos, que permanece explícita en `owner_repo`.
+
 ## Mecanismo técnico
 
-### Decisión: Identificadores de proyecto estables, no rutas
+### Estructura del ecosistem de repositorios
+
+Orquestación de polyrepo en el Modelo Federado Initiative-First con GitHub Spec Kit.
+
+```text
+poc-cross-hub-federated-sdd/
+├── .specify/
+│   └── memory/
+│       └── constitution.md
+├── docs/
+│   ├── architecture/
+│   └── decisions/
+└── specs/
+    └── 001-health-status/
+        ├── spec.md
+        └── links-manifest.yaml
+
+poc-be-federated-sdd/
+├── .specify/
+│   └── memory/constitution.md
+├── docs/
+│   ├── architecture/
+│   └── decisions/
+├── specs/
+│   └── 001-health-endpoint/
+│       ├── origin.yaml
+│       ├── spec.md
+│       ├── plan.md
+│       └── tasks.md
+├── specs/contracts/openapi/
+│   └── health-api.yaml
+└── src/
+
+poc-fe-federated-sdd/
+├── .specify/
+│   └── memory/constitution.md
+├── docs/
+│   ├── architecture/
+│   └── decisions/
+├── specs/
+│   └── 001-health-page/
+│       ├── origin.yaml
+│       ├── spec.md
+│       ├── plan.md
+│       └── tasks.md
+└── src/
+```
+
+
+### Decisiones
+
+#### Decisión: Identificadores de proyecto estables, no rutas
 
 Los enlaces entre repositorios usan identificadores estables del proyecto: en esta PoC,
 las URLs canónicas de GitHub de cada repositorio en los campos `repo`, `owner_repo` y
@@ -56,7 +114,7 @@ rutas se interpretan desde la raíz del repositorio correspondiente y junto con 
 inmutable fijada. No representan la ubicación local del clon. Esta decisión se inspira en
 [OpenSpec: identificadores de proyecto estables, no rutas](https://github.com/Fission-AI/OpenSpec/blob/main/openspec/explorations/workspace-architecture.md#decision-stable-project-identifiers-not-paths).
 
-### Decisión: Resolución de primera instancia fuera de línea
+#### Decisión: Resolución de primera instancia fuera de línea
 
 La estrategia objetivo resuelve primero cada URL canónica del manifiesto contra clones
 locales configurados para esos repositorios. Solo si la revisión requerida no está disponible
@@ -68,7 +126,7 @@ comando de derivación que haga esa resolución automáticamente. Hasta que exis
 debe recibir una ubicación local explícita o resolver manualmente la revisión remota. La
 propuesta se inspira en [OpenSpec: resolución offline-first](https://github.com/Fission-AI/OpenSpec/blob/main/openspec/explorations/workspace-architecture.md#decision-offline-first-resolution).
 
-### Decisión: Repositorio explícito del propietario para contratos compartidos
+#### Decisión: Repositorio explícito del propietario para contratos compartidos
 
 Un contrato compartido puede servir a varios repositorios sin pertenecer en exclusiva a la
 spec de ninguno de ellos. Por eso `shared_contracts` declara explícitamente `owner_repo`,

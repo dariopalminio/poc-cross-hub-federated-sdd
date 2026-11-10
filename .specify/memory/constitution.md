@@ -1,14 +1,13 @@
 <!--
 Sync Impact Report
-Version change: 1.3.0 -> 1.4.0 (estructura de directorios para contratos OpenAPI y AsyncAPI)
+Version change: 1.4.0 -> 1.5.0 (autoridad funcional global del Hub y delimitacion de responsabilidades)
 Modified principles:
-- IV. Contratos inmutables con propietario explicito: formato, extension y ubicacion de OpenAPI.
-Expanded sections:
-- Flujo y puertas de revision: ruta canonica con nombre de contrato y espacio AsyncAPI futuro.
+- I. Initiative-First: autoridad del Hub como fuente de verdad funcional a nivel de producto y rol auditor.
+- II. Separacion de planos y autonomia local: acceso satelite limitado y sin permisos de escritura sobre la spec global.
+Expanded sections: ninguna.
 Removed sections: ninguna.
-Deferred items: actualizar el manifiesto cuando el Backend publique la revision YAML canonica
-en `specs/contracts/openapi/health-api.yaml`.
-Nota: informe temporal de revision; retirar antes de confirmar la constitucion en Git.
+Deferred items: ninguno.
+Nota: actualizar este informe temporal si se modifica el alcance de la enmienda antes de confirmarla en Git.
 -->
 # poc-cross-hub-federated-sdd Constitution
 
@@ -21,7 +20,11 @@ antes de derivar especificaciones locales. Esta DEBE identificar el objetivo de 
 el alcance, los repositorios participantes y los criterios de aceptacion transversales.
 Los cambios de alcance compartido DEBEN actualizar primero esa especificacion y registrar
 el impacto en sus derivados. El Hub es la fuente de verdad del alcance transversal para
-evitar decisiones de negocio contradictorias entre repositorios.
+evitar decisiones de negocio contradictorias entre repositorios. El repositorio Hub del
+producto (`bx-spec-cosmos`) DEBE ser la fuente de verdad de la especificacion funcional
+global y su dueño a nivel de producto; tambien DEBE auditar la alineacion de las
+contribuciones locales con esa especificacion. Esta autoridad sobre la especificacion
+funcional no convierte al Hub en propietario de los contratos tecnicos compartidos.
 
 ### II. Separacion de planos y autonomia local
 
@@ -29,8 +32,13 @@ El Hub DEBE contener la coordinacion estrategica: iniciativas, referencias a con
 orquestacion documental. El codigo de producto, la especificacion local, el plan tecnico
 y las tareas de ejecucion DEBEN residir en el repositorio satelite correspondiente.
 Cada satelite DEBE decidir su implementacion tecnica dentro del alcance y de los contratos
-acordados; NO DEBE redefinir unilateralmente requisitos transversales ni contratos ajenos.
-Esta separacion mantiene la coordinacion sin convertir el Hub en un repositorio de producto.
+acordados. Los satelites NO DEBEN tener permisos de escritura sobre la especificacion
+funcional global ni alterarla; tampoco DEBEN recibir ni asumir el contexto macro completo
+del producto cuando su contribucion solo requiere el alcance asignado en el manifiesto.
+El Hub DEBE proporcionar a cada satelite unicamente los requisitos y el contexto necesarios
+para su contribucion. Los satelites NO DEBEN redefinir unilateralmente requisitos
+transversales ni contratos ajenos. El Hub conserva la autoridad funcional global y el rol
+auditor; los satelites conservan la responsabilidad de implementacion local.
 
 ### III. Derivacion jerarquica trazable
 
@@ -203,4 +211,4 @@ del mantenedor del Hub y de los propietarios afectados antes de aceptar el cambi
 Las excepciones NO DEBEN modificar implicitamente esta constitucion ni autorizar cambios
 retroactivos en revisiones publicadas de contratos.
 
-**Version**: 1.4.0 | **Ratified**: TODO(RATIFICATION_DATE): confirmar fecha de adopcion original | **Last Amended**: 2026-11-09
+**Version**: 1.5.0 | **Ratified**: TODO(RATIFICATION_DATE): confirmar fecha de adopcion original | **Last Amended**: 2026-11-10
