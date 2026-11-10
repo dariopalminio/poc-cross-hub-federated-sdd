@@ -126,7 +126,7 @@ poc-be-federated-sdd/
 │       ├── spec.md
 │       ├── plan.md
 │       └── tasks.md
-├── specs/contracts/
+├── specs/contracts/openapi/
 │   └── health-api.yaml
 └── src/
 
