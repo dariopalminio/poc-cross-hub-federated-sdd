@@ -26,7 +26,7 @@ create automation, or replace the child repository's technology-specific guidanc
 | Frontend consumer | `poc-fe-federated-sdd` | `https://github.com/dariopalminio/poc-fe-federated-sdd` | `frontend-consumer` | `specs/001-health-page/spec.md` |
 
 For another initiative (Epic), replace the example initiative (Epic) and local specification paths with
-the corresponding `links-manifest.yaml` values. Do not copy the table's example initiative (Epic)
+the corresponding `parent-spec-manifest.yaml` values. Do not copy the table's example initiative (Epic)
 paths into another feature without confirming its manifest entry.
 
 ## Project Purpose and Boundaries
@@ -47,14 +47,14 @@ The parent initiative (Epic) is the source of truth for cross-repository require
 editing or deriving the local specification, resolve `{{PARENT_SPEC_PATH}}` and
 `{{PARENT_MANIFEST_PATH}}` at the same immutable Hub commit.
 
-The parent `links-manifest.yaml` entry for this repository and role defines:
+The parent `parent-spec-manifest.yaml` entry for this repository and role defines:
 
 - `repo`: this child repository's canonical URL.
 - `role`: this repository's assigned contribution.
 - `local_spec`: the location of this child specification.
 - `scope`: the parent requirement IDs assigned to this child.
 
-The child MUST keep `origin.yaml` beside its local `spec.md`. It MUST contain the following
+The child MUST keep `spec-origin.yaml` beside its local `spec.md`. It MUST contain the following
 fields, consistent with the Hub constitution:
 
 ```yaml
@@ -69,7 +69,7 @@ requirements:
 
 Replace every example token with a concrete value before declaring the child aligned. The
 `source_revision` MUST be the full commit SHA containing both the parent `spec.md` and its
-`links-manifest.yaml`. A branch name, tag that can move, or synchronization timestamp is not
+`parent-spec-manifest.yaml`. A branch name, tag that can move, or synchronization timestamp is not
 a substitute for that SHA.
 
 Before proceeding, verify all of the following against that exact parent revision:
@@ -84,7 +84,7 @@ Before proceeding, verify all of the following against that exact parent revisio
    revision declared by the parent manifest.
 
 An unresolved path or SHA, missing requirement, or metadata mismatch blocks any claim that
-this child is aligned. Do not silently guess a parent revision or edit `origin.yaml` merely
+this child is aligned. Do not silently guess a parent revision or edit `spec-origin.yaml` merely
 to make the checks appear to pass.
 
 ## Contract Ownership
@@ -107,7 +107,7 @@ For initiatives (Epics) without a shared contract, the parent manifest MUST use 
 ## Local Spec Kit Workflow
 
 Each child repository maintains its own Spec Kit installation and constitution. After the
-parent-derived local `spec.md` and `origin.yaml` pass the checks above:
+parent-derived local `spec.md` and `spec-origin.yaml` pass the checks above:
 
 1. Use `/speckit-clarify` for local ambiguities. If an answer changes cross-cutting scope,
    update the parent initiative first instead.
@@ -125,11 +125,11 @@ dispatch, or other cross-repository automation are installed.
 
 When the parent spec, manifest, or a shared contract changes:
 
-1. Compare the new immutable revision with `origin.yaml` and identify affected local
+1. Compare the new immutable revision with `spec-origin.yaml` and identify affected local
    requirements, plans, tasks, and implementation.
 2. Do not report alignment with the new revision until this child has reviewed and updated
    its affected derived artifacts.
-3. Update `origin.yaml` in the same child change that adopts the new parent revision.
+3. Update `spec-origin.yaml` in the same child change that adopts the new parent revision.
 4. Keep evidence for prior revisions; do not rewrite historical results as if they were
    produced against the new revision.
 
@@ -141,7 +141,7 @@ criteria, including integration criteria, have evidence.
 
 ## Verification Guidance
 
-- Inspect the child specification, `origin.yaml`, the matching parent manifest entry, and
+- Inspect the child specification, `spec-origin.yaml`, the matching parent manifest entry, and
   all referenced revisions when reviewing a change.
 - Obtain install, test, lint, build, and type-check commands from actual project manifests
   and CI configuration. Do not invent commands when those files do not exist.

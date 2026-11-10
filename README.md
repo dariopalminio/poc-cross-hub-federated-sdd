@@ -25,7 +25,7 @@ criterios que pertenecen a la iniciativa completa.
 
 Esta PoC aborda específicamente el escenario polyrepo y multifuncional Backend-Frontend; no
 pretende resolver la organización interna de un monorepo. La hipótesis es que una spec padre
-en el Hub, un `links-manifest.yaml` con alcances por rol y un `origin.yaml` por spec hija
+en el Hub, un `parent-spec-manifest.yaml` con alcances por rol y un `spec-origin.yaml` por spec hija
 permiten mantener una fuente de verdad transversal y derivar trabajo local conservando los
 IDs de requisitos y fijando revisiones inmutables de la spec y de los contratos.
 
@@ -35,7 +35,7 @@ En iniciativas que abarcan varios equipos y repositorios, el repositorio no es p
 unidad principal de planificación: Backend y Frontend son contribuciones distintas al mismo
 trabajo. Este proyecto toma la iniciativa y su spec padre como objeto de planificación; cada
 repositorio mantiene su spec y cambio local, vinculados a la iniciativa por
-`links-manifest.yaml` y `origin.yaml`. Así se conserva la autonomía de implementación sin
+`parent-spec-manifest.yaml` y `spec-origin.yaml`. Así se conserva la autonomía de implementación sin
 fragmentar el objetivo ni perder la trazabilidad transversal.
 
 Esta decisión se inspira en la propuesta de OpenSpec sobre planificación por iniciativa con
@@ -65,7 +65,7 @@ poc-cross-hub-federated-sdd/
 └── specs/
     └── 001-health-status/
         ├── spec.md
-        └── links-manifest.yaml
+        └── parent-spec-manifest.yaml
 
 poc-be-federated-sdd/
 ├── .specify/
@@ -75,7 +75,7 @@ poc-be-federated-sdd/
 │   └── decisions/
 ├── specs/
 │   └── 001-health-endpoint/
-│       ├── origin.yaml
+│       ├── spec-origin.yaml
 │       ├── spec.md
 │       ├── plan.md
 │       └── tasks.md
@@ -91,7 +91,7 @@ poc-fe-federated-sdd/
 │   └── decisions/
 ├── specs/
 │   └── 001-health-page/
-│       ├── origin.yaml
+│       ├── spec-origin.yaml
 │       ├── spec.md
 │       ├── plan.md
 │       └── tasks.md
@@ -131,16 +131,16 @@ propuesta se inspira en [OpenSpec: resolución offline-first](https://github.com
 Un contrato compartido puede servir a varios repositorios sin pertenecer en exclusiva a la
 spec de ninguno de ellos. Por eso `shared_contracts` declara explícitamente `owner_repo`,
 además de `id`, `path` y `revision`; el propietario identifica la única copia canónica y los
-consumidores la referencian desde sus propios enlaces y `origin.yaml`. El propietario no se
+consumidores la referencian desde sus propios enlaces y `spec-origin.yaml`. El propietario no se
 deduce de la ubicación de la spec ni del primer consumidor. Para `health-api`, el propietario
 es `poc-be-federated-sdd`.
 
 Esta regla se inspira en [OpenSpec: propietario explícito de contratos compartidos](https://github.com/Fission-AI/OpenSpec/blob/main/openspec/explorations/workspace-architecture.md#decision-explicit-owner-repo-for-shared-contracts).
 
 - La spec padre define el objetivo y los requisitos transversales.
-- `links-manifest.yaml` registra las specs hijas por `repo`, `role`, `local_spec` y `scope`,
+- `parent-spec-manifest.yaml` registra las specs hijas por `repo`, `role`, `local_spec` y `scope`,
 	y los contratos compartidos por `id`, `owner_repo`, `path` y `revision`.
-- Cada hija mantiene `origin.yaml` junto a `spec.md`, con `epic_id`, `hub_repo`, `spec_source`,
+- Cada hija mantiene `spec-origin.yaml` junto a `spec.md`, con `epic_id`, `hub_repo`, `spec_source`,
 	`source_revision`, `role` y `requirements`. La revisión de origen identifica el commit del
 	Hub que contiene la spec y el manifiesto.
 - El Backend es el propietario del contrato OpenAPI; el Frontend consume la revisión fijada
@@ -153,7 +153,7 @@ Esta regla se inspira en [OpenSpec: propietario explícito de contratos comparti
 	implica que exista uno.
 
 Referencias: [spec padre](specs/001-health-status/spec.md),
-[manifiesto](specs/001-health-status/links-manifest.yaml),
+[manifiesto](specs/001-health-status/parent-spec-manifest.yaml),
 [constitución](.specify/memory/constitution.md) y
 [ADR de contrato](docs/decisions/0001-ruta-canonica-openapi.md).
 
@@ -162,7 +162,7 @@ Referencias: [spec padre](specs/001-health-status/spec.md),
 1. En el Hub, especificar la iniciativa con `/speckit-specify` y resolver ambigüedades con
 	 `/speckit-clarify`.
 2. Mantener el manifiesto padre alineado con los requisitos, roles, rutas y revisiones fijadas.
-3. En cada satélite, crear o actualizar `origin.yaml` y derivar la spec local conservando los
+3. En cada satélite, crear o actualizar `spec-origin.yaml` y derivar la spec local conservando los
 	 IDs y criterios asignados por el manifiesto. La derivación requiere revisión de trazabilidad;
 	 no se presupone un comando personalizado `/speckit-derive`.
 4. Continuar el ciclo local con `/speckit-clarify`, `/speckit-plan`, `/speckit-tasks` y
@@ -204,7 +204,7 @@ que afirma que la referencia contractual está pendiente.
 	compartido tiene un propietario Backend, una ruta canónica y una revisión inmutable que el
 	Hub registra para el consumo del Frontend.
 - Se validó el uso de Spec Kit en un flujo polyrepo con una spec de iniciativa (Epic) en el
-	Hub y specs hijas por repositorio satélite, enlazadas mediante el manifiesto y `origin.yaml`.
+	Hub y specs hijas por repositorio satélite, enlazadas mediante el manifiesto y `spec-origin.yaml`.
 - Se comprobó que el manifiesto declara los roles `backend-health` y `frontend-health`, sus
 	rutas locales y sus alcances de requisitos.
 - Se comprobó que `shared_contracts` contiene el propietario Backend, la ruta YAML canónica y

@@ -10,9 +10,9 @@ El manifiesto de la iniciativa declara shared_contracts: [], pero la constituci�
 
 2. Actualizar shared_contracts en el manifiesto del Hub con el contrato y ese SHA:
 
-3. Integrar ese cambio en el Hub y anoten el SHA completo del commit del Hub. Son dos revisiones distintas: revision apunta al commit Backend con el contrato; source_revision en origin.yaml apunta al commit Hub con la spec y el manifiesto.
+3. Integrar ese cambio en el Hub y anoten el SHA completo del commit del Hub. Son dos revisiones distintas: revision apunta al commit Backend con el contrato; source_revision en spec-origin.yaml apunta al commit Hub con la spec y el manifiesto.
 
-4. Actualizar los origin.yaml afectados para fijar esa nueva revisión del Hub. El Frontend entonces puede derivar su spec contra el manifiesto actualizado y planificar el consumo del contrato fijado.
+4. Actualizar los spec-origin.yaml afectados para fijar esa nueva revisión del Hub. El Frontend entonces puede derivar su spec contra el manifiesto actualizado y planificar el consumo del contrato fijado.
 
-5. Hasta que ese cambio del Hub esté integrado, mantengan bloqueada la planificación Frontend: no cambien su constitución ni sustituyan shared_contracts: [] por una elección local. El fronten debe actualizar su source_revision en el origin.yaml.
+5. Hasta que ese cambio del Hub esté integrado, mantengan bloqueada la planificación Frontend: no cambien su constitución ni sustituyan shared_contracts: [] por una elección local. El fronten debe actualizar su source_revision en el spec-origin.yaml.
 

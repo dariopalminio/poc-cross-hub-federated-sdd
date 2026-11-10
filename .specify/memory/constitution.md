@@ -46,8 +46,8 @@ Cada `spec.md` local DEBE derivarse mecanicamente de la iniciativa central media
 punteros explicitos al repositorio, ruta y revision inmutable de origen. Su alcance DEBE
 identificar los requisitos y criterios de aceptacion centrales que cubre. Cada `plan.md`
 DEBE referenciar su especificacion local y cada `tasks.md`, su plan tecnico.
-La spec padre DEBE mantener `links-manifest.yaml` junto a su `spec.md`; cada spec hija
-DEBE mantener `origin.yaml`, sin punto inicial, junto a su propio `spec.md`.
+La spec padre DEBE mantener `parent-spec-manifest.yaml` junto a su `spec.md`; cada spec hija
+DEBE mantener `spec-origin.yaml` junto a su propio `spec.md`.
 Ambos archivos DEBEN implementar el mecanismo declarativo padre-hijas definido mas abajo.
 La derivacion NO DEBE introducir requisitos transversales independientes de la iniciativa.
 Una actualizacion del origen DEBE incluir una revision de impacto y la actualizacion de los
@@ -59,7 +59,7 @@ linaje sin mantener copias divergentes como fuentes de verdad alternativas.
 Todo contrato compartido DEBE identificar un propietario unico mediante `owner_repo`,
 un identificador, una ruta y una revision o version inmutable. El manifiesto de enlaces
 DEBE registrar los contratos compartidos siguiendo la estructura de
-`docs/template/links-manifest-template.yaml` y los campos exigidos por esta constitucion;
+`docs/templates/parent-spec-manifest-template.yaml` y los campos exigidos por esta constitucion;
 la referencia DEBE permitir resolver la revision
 exacta del artefacto. El propietario DEBE mantener la definicion autoritativa del contrato;
 los consumidores NO DEBEN modificarla ni sustituirla por una copia local independiente.
@@ -89,7 +89,7 @@ la ruta y la revision inmutable del contrato.
 
 Toda revision DEBE comprobar la trazabilidad de requisitos, la resolucion de punteros y
 la coherencia de las referencias a contratos y propietarios. La revision DEBE comprobar
-bidireccionalmente `links-manifest.yaml` y `origin.yaml` contra la revision central fijada;
+bidireccionalmente `parent-spec-manifest.yaml` y `spec-origin.yaml` contra la revision central fijada;
 la existencia de ambos archivos por si sola NO DEBE considerarse evidencia de alineacion.
 Los cambios de contratos
 DEBEN aportar evidencia de compatibilidad o declarar la incompatibilidad y su migracion.
@@ -118,7 +118,7 @@ El mecanismo se basa en el diseno de [docs/poc-borrador.md](../../docs/poc-borra
 Las siguientes reglas son obligatorias para los acuerdos de derivacion del Hub; NO DEBEN
 interpretarse como una automatizacion ya disponible en Spec Kit.
 
-- **Manifiesto padre:** `specs/<iniciativa>/links-manifest.yaml` DEBE contener `schema`,
+- **Manifiesto padre:** `specs/<iniciativa>/parent-spec-manifest.yaml` DEBE contener `schema`,
 	`id`, `title`, `shared_contracts` y `links`. Su `id` DEBE identificar la iniciativa
 	de la spec padre. Cada entrada de `links` DEBE declarar `role`, `repo`, `local_spec`
 	y `scope`, con los IDs de requisitos centrales asignados a esa contribucion.
@@ -128,7 +128,7 @@ interpretarse como una automatizacion ya disponible en Spec Kit.
 	contrato en el repositorio propietario. El Hub DEBE referenciar el contrato canonico,
 	no alojar una copia autoritativa alternativa. Si no hay contratos compartidos,
 	`shared_contracts` DEBE ser una lista vacia explicita.
-- **Origen hijo:** `specs/<spec-local>/origin.yaml` DEBE declarar `epic_id`,
+- **Origen hijo:** `specs/<spec-local>/spec-origin.yaml` DEBE declarar `epic_id`,
 	`hub_repo`, `spec_source`, `source_revision`, `role` y `requirements`.
 	`spec_source` DEBE apuntar al `spec.md` padre mediante una ruta relativa al repositorio
 	del Hub y `source_revision` DEBE fijar el SHA completo del commit que contiene tanto
@@ -147,7 +147,7 @@ interpretarse como una automatizacion ya disponible en Spec Kit.
 	la declaracion de alineacion, aunque no exista todavia un validador automatizado.
 - **Resincronizacion:** cada cambio de la spec padre, su manifiesto o un contrato DEBE
 	analizar el impacto sobre las hijas afectadas. Para adoptar una nueva revision central,
-	cada hija afectada DEBE revisar su spec y sus derivados y actualizar `origin.yaml` en
+	cada hija afectada DEBE revisar su spec y sus derivados y actualizar `spec-origin.yaml` en
 	el mismo cambio local. Si cambia un contrato, el manifiesto DEBE fijar su nueva revision
 	y las hijas afectadas DEBEN adoptar la revision central que la referencia. El Hub DEBE
 	registrar el estado de actualizacion; una hija fijada a una revision anterior NO DEBE
@@ -161,7 +161,7 @@ interpretarse como una automatizacion ya disponible en Spec Kit.
 	Despues, el propietario Backend DEBE mover o generar el contrato en esa ruta y publicar un
 	commit que contenga la version canonica. El Hub DEBE registrar la ruta nueva y el SHA completo
 	e inmutable de ese commit en `shared_contracts`, y publicar la revision actualizada del Hub.
-	Finalmente, cada hija afectada DEBE fijar esa revision del Hub en `origin.yaml` y comprobar
+	Finalmente, cada hija afectada DEBE fijar esa revision del Hub en `spec-origin.yaml` y comprobar
 	el contrato antes de declarar alineacion. Hasta completar la secuencia, los consumidores NO
 	DEBEN adoptar la ruta nueva ni presentarse como alineados con ella; la copia anterior NO DEBE
 	mantenerse como una segunda fuente autoritativa.
@@ -170,9 +170,9 @@ interpretarse como una automatizacion ya disponible en Spec Kit.
 
 1. Especificar en el Hub la iniciativa y sus criterios de aceptacion; identificar satelites,
 	 responsabilidades y contratos compartidos con sus propietarios.
-2. Registrar `links-manifest.yaml` junto a la spec padre y fijar las revisiones de los
+2. Registrar `parent-spec-manifest.yaml` junto a la spec padre y fijar las revisiones de los
 	 contratos. Seleccionar el commit central que sera el origen de la derivacion.
-3. Derivar en cada satelite su `spec.md` junto a `origin.yaml`; comprobar su correspondencia
+3. Derivar en cada satelite su `spec.md` junto a `spec-origin.yaml`; comprobar su correspondencia
 	 con el manifiesto fijado antes de generar `plan.md` y despues `tasks.md`.
 	 Cada transicion DEBE comprobar que no contradice el artefacto del que deriva. Si se usa IA
 	 para seleccionar contenido, la derivacion DEBE incluir revision humana de fidelidad.

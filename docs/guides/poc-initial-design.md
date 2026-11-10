@@ -72,15 +72,15 @@ poc-cross-hub-federated-sdd/
 ├── docs/
 │   ├── poc-borrador.md
 │   └── template/
-│       └── links-manifest-template.yaml
+│       └── parent-spec-manifest-template.yaml
 └── specs/
     └── 001-health-status/
         ├── spec.md
-        └── links-manifest.yaml
+        └── parent-spec-manifest.yaml
 ```
 
 La plantilla disponible es
-[docs/template/links-manifest-template.yaml](template/links-manifest-template.yaml).
+[docs/template/parent-spec-manifest-template.yaml](template/parent-spec-manifest-template.yaml).
 El manifiesto de la iniciativa debe identificar contratos y propietario; las referencias
 inmutables y el mapeo de satélites siguientes son una propuesta de ampliación que deberá
 validarse contra la plantilla antes de automatizar su consumo.
@@ -122,7 +122,7 @@ poc-be-federated-sdd/
 │   └── memory/constitution.md
 ├── specs/
 │   └── 001-health-endpoint/
-│       ├── origin.yaml
+│       ├── spec-origin.yaml
 │       ├── spec.md
 │       ├── plan.md
 │       └── tasks.md
@@ -135,7 +135,7 @@ poc-fe-federated-sdd/
 │   └── memory/constitution.md
 ├── specs/
 │   └── 001-health-page/
-│       ├── origin.yaml
+│       ├── spec-origin.yaml
 │       ├── spec.md
 │       ├── plan.md
 │       └── tasks.md
@@ -159,7 +159,7 @@ requirements:
 ```
 
 Una fecha de sincronización puede aportar información adicional, pero no sustituye al SHA
-de origen. El formato `.origin.yaml` propuesto no es una capacidad estándar confirmada de Spec Kit.
+de origen. El formato `spec-origin.yaml` propuesto no es una capacidad estándar confirmada de Spec Kit.
 
 ## 4. Derivación de la iniciativa al satélite
 

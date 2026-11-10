@@ -6,7 +6,7 @@ Autores: Equipo del Hub
 ## Contexto
 
 El contrato `health-api` es propiedad del Backend. El manifiesto de la iniciativa
-[`001-health-status`](../../specs/001-health-status/links-manifest.yaml) actualmente fija
+[`001-health-status`](../../specs/001-health-status/parent-spec-manifest.yaml) actualmente fija
 la ruta `specs/contracts/openapi.json` y la revisión Backend
 `535a33201c0b937a41cc8dba5b40d639d448c5ed`.
 
@@ -33,22 +33,22 @@ para futuros contratos AsyncAPI; esta decisión no presupone que ya exista algun
 
 La sincronización federada se representará mediante los siguientes artefactos:
 
-- **Plantillas:** `docs/templates/links-manifest-template.yaml` proporciona la base del
+- **Plantillas:** `docs/templates/parent-spec-manifest-template.yaml` proporciona la base del
   manifiesto padre y debe contemplar `links`, además de `shared_contracts` con el campo
-  `revision`. `docs/templates/origin-template.yaml` proporciona la estructura del `origin.yaml`
+  `revision`. `docs/templates/spec-origin-template.yaml` proporciona la estructura del `spec-origin.yaml`
   que se copia junto a la spec de cada repositorio hijo.
-- **Hub:** `links-manifest.yaml` declara el contrato en `shared_contracts` mediante `id`,
+- **Hub:** `parent-spec-manifest.yaml` declara el contrato en `shared_contracts` mediante `id`,
   `owner_repo`, `path` y `revision`, donde `revision` identifica el commit inmutable del
   repositorio Backend que contiene el contrato canónico. Las entradas `links` asignan
   `role`, `repo`, `local_spec` y `scope` al proveedor y al consumidor.
 - **Backend proveedor:** mantiene la copia canónica en la ruta declarada, desarrolla la
   implementación contra el contrato y verifica que el servicio cumple la interfaz publicada.
-  Su `origin.yaml` fija `epic_id`, `hub_repo`, `spec_source`, `source_revision`, el rol Backend
+  Su `spec-origin.yaml` fija `epic_id`, `hub_repo`, `spec_source`, `source_revision`, el rol Backend
   y los requisitos que le corresponden.
 - **Frontend consumidor:** referencia el contrato fijado por el manifiesto, sin copiarlo
-  como definición autoritativa. Su `origin.yaml` fija los mismos campos de procedencia,
+  como definición autoritativa. Su `spec-origin.yaml` fija los mismos campos de procedencia,
   la misma `source_revision` del Hub, el rol Frontend y su propio conjunto de requisitos.
-- **Sincronización:** ambos `origin.yaml` identifican la misma `source_revision` inmutable
+- **Sincronización:** ambos `spec-origin.yaml` identifican la misma `source_revision` inmutable
   del Hub; sus roles, rutas de spec e IDs de requisitos deben corresponder a sus entradas en `links`.
   El contrato consumido debe coincidir con `owner_repo`, `path` y `revision` de
   `shared_contracts` en esa revisión del Hub.
@@ -64,7 +64,7 @@ la interfaz publicada. Las herramientas de validación concretas se determinan a
 las configuraciones existentes de cada repositorio.
 
 Este ADR define el modelo objetivo y la ubicación propuesta; no ejecuta el cambio ni modifica
-el contrato, el manifiesto o los `origin.yaml`.
+el contrato, el manifiesto o los `spec-origin.yaml`.
 
 ## Alternativas consideradas
 
@@ -81,7 +81,7 @@ el contrato, el manifiesto o los `origin.yaml`.
 - Una aceptación fija el contrato de salud en una ruta canónica común; cualquier modificación
   posterior se publica como una nueva revisión inmutable.
 - El Hub coordina la revisión del contrato y el origen común; proveedor y consumidor conservan
-  sus propios alcances mediante sus respectivos `origin.yaml`.
+  sus propios alcances mediante sus respectivos `spec-origin.yaml`.
 - Los planes y las specs referencian el contrato en vez de copiar su definición, y la validación
   comprueba la implementación del proveedor frente a la interfaz publicada.
 - La ruta actualmente registrada sigue siendo la referencia resoluble hasta que el Hub fije

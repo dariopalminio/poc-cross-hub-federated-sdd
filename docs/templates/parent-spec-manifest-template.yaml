@@ -1,4 +1,4 @@
-# links-manifest-template.yaml (Estado Inicial - Generado en la Fase de Especificación)
+# parent-spec-manifest-template.yaml (Estado Inicial - Generado en la Fase de Especificación)
 schema: spec-driven/links-manifest-template-v1
 id: [EPIC_ID]
 title: [Título de la spec de épica, objetivo de negocio o release meta]
