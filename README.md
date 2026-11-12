@@ -165,7 +165,7 @@ Esta regla se inspira en [OpenSpec: propietario explícito de contratos comparti
 Referencias: [spec padre](specs/001-health-status/spec.md),
 [manifiesto](specs/001-health-status/parent-spec-manifest.yaml),
 [constitución](.specify/memory/constitution.md) y
-[ADR de contrato](docs/decisions/0001-ruta-canonica-openapi.md).
+[ADR de contrato](docs/decisions/0001-ubicacion-canonica-y-vendoring-openapi.md).
 
 ## Flujo con Spec Kit
 

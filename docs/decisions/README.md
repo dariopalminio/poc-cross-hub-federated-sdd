@@ -22,4 +22,4 @@ Ver plantilla en [0000-adr-template.md](0000-adr-template.md).
 
 ## Decisiones registradas
 
-- [0001. Ubicación canónica y vendoring gobernado del contrato OpenAPI](0001-ruta-canonica-openapi.md)
+- [0001. Ubicación canónica y vendoring gobernado del contrato OpenAPI](0001-ubicacion-canonica-y-vendoring-openapi.md)
