@@ -19,3 +19,8 @@ Ejemplo: `0001-adoptar-arquitectura-hexagonal.md`.
 - Se reemplaza una decisión previa (el nuevo ADR debe referenciar al anterior como "supersedes").
 
 Ver plantilla en [0000-adr-template.md](0000-adr-template.md).
+
+## Decisiones registradas
+
+- [0001. Ubicación canónica y sincronización del contrato OpenAPI](0001-ruta-canonica-openapi.md)
+- [0002. Vendoring gobernado con lockfile criptográfico](0002-vendoring-gobernado-lockfile-criptografico.md)
