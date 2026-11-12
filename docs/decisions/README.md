@@ -22,5 +22,4 @@ Ver plantilla en [0000-adr-template.md](0000-adr-template.md).
 
 ## Decisiones registradas
 
-- [0001. Ubicación canónica y sincronización del contrato OpenAPI](0001-ruta-canonica-openapi.md)
-- [0002. Vendoring gobernado con lockfile criptográfico](0002-vendoring-gobernado-lockfile-criptografico.md)
+- [0001. Ubicación canónica y vendoring gobernado del contrato OpenAPI](0001-ruta-canonica-openapi.md)
